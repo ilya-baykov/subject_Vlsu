@@ -10,6 +10,7 @@ dict_subject = {
     "political_science": "Ефимова С.А",
     "fuzzy_sets": "Абрахин С.И.",
 }
+list_subject = list(dict_subject)
 
 
 def choice_of_discipline_str(request, current_subject_str):
@@ -19,8 +20,16 @@ def choice_of_discipline_str(request, current_subject_str):
 
 
 def choice_of_discipline_int(request, current_subject_int):
-    list_subject = list(dict_subject)
     if len(list_subject) >= current_subject_int > 0:
         url_link = reverse('subject_url', args=(list_subject[current_subject_int - 1],))
         return HttpResponseRedirect(url_link)
     return HttpResponseNotFound(f"Введите число от 1 до 4 , вы ввели - {current_subject_int}")
+
+
+def menu(request):
+    response = "<ol>"
+    for subject in list_subject:
+        url_link = reverse('subject_url', args=(subject,))
+        response += f"<li> <a href = '{url_link}'> {subject.title().replace('_', ' ')} </a> </li>"
+    response += "</ol>"
+    return HttpResponse(response)
