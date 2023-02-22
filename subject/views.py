@@ -21,5 +21,6 @@ def choice_of_discipline_str(request, current_subject_str):
 def choice_of_discipline_int(request, current_subject_int):
     list_subject = list(dict_subject)
     if len(list_subject) >= current_subject_int > 0:
-        return HttpResponseRedirect(f'{list_subject[current_subject_int - 1]}')
+        url_link = reverse('subject_url', args=(list_subject[current_subject_int - 1],))
+        return HttpResponseRedirect(url_link)
     return HttpResponseNotFound(f"Введите число от 1 до 4 , вы ввели - {current_subject_int}")
