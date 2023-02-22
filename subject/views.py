@@ -14,7 +14,7 @@ dict_subject = {
 
 def choice_of_discipline_str(request, current_subject_str):
     if dict_subject.get(current_subject_str):
-        return HttpResponse(f"Преподователь по {current_subject_str}  - {dict_subject[current_subject_str]}")
+        return HttpResponse(f"<h2>Преподователь по {current_subject_str}  - {dict_subject[current_subject_str]}</h2>")
     return HttpResponseNotFound(f"Нам очень жаль , но мы не знаем такую дисцилину ;с  {current_subject_str}")
 
 
